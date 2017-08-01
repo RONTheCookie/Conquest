@@ -27,8 +27,9 @@ public class TeamBalancing {
             }
             for (double i = x; i > 0; i--){
                 int random = NumberUtils.random(blueSize - 1, 0);
-                TeamManager.get().getBlueTeam().remove(teamBlue.get(random));
-                TeamManager.get().joinRedTeam(teamBlue.get(random));
+                Player p = teamBlue.get(random);
+                TeamManager.get().getBlueTeam().remove(p);
+                TeamManager.get().joinRedTeam(p);
             }
         } else if ((redSize - 1) > blueSize){
             double x = redSize - blueSize;
@@ -39,8 +40,9 @@ public class TeamBalancing {
             }
             for (double i = x; i > 0; i--){
                 int random = NumberUtils.random(redSize - 1, 0);
-                TeamManager.get().getRedTeam().remove(teamRed.get(random));
-                TeamManager.get().joinBlueTeam(teamRed.get(random));
+                Player p = teamRed.get(random);
+                TeamManager.get().getRedTeam().remove(p);
+                TeamManager.get().joinBlueTeam(p);
             }
         }
 
