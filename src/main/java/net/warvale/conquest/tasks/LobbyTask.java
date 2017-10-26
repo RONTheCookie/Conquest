@@ -1,9 +1,6 @@
 package net.warvale.conquest.tasks;
 
-import net.warvale.conquest.game.Game;
 import net.warvale.conquest.game.teams.TeamManager;
-import net.warvale.staffcore.StaffCore;
-import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class LobbyTask extends BukkitRunnable {
@@ -22,7 +19,7 @@ public class LobbyTask extends BukkitRunnable {
 
         if (TeamManager.get().getRedTeam().size() >= 1 && TeamManager.get().getBlueTeam().size() >= 1) {
             //start the countdown
-            new BossbarCountdownTask().runTaskTimer(StaffCore.get(), 20, 20);
+//            new BossbarCountdownTask().runTaskTimer(StaffCore.get(), 20, 20);
         }
 
     }

@@ -10,7 +10,7 @@ public class PingListener implements Listener {
 
     @EventHandler
     public void onServerListPing(ServerListPingEvent e) {
-        // Pixelific wanted me to disable those. -RONTheCookie
+
         e.setMaxPlayers(Game.get().getMaxPlayer());
 
         e.setMotd(ChatColor.DARK_RED + "Warvale" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GRAY + "Play. Compete. Repeat.");

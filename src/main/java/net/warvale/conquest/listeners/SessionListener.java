@@ -13,12 +13,9 @@ import net.warvale.conquest.message.PrefixType;
 import net.warvale.conquest.spec.SpecManager;
 import net.warvale.conquest.utils.mc.items.ItemStackBuilder;
 import net.warvale.conquest.utils.world.LobbyUtils;
-import net.warvale.staffcore.bossbar.BarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -66,10 +63,10 @@ public class SessionListener implements Listener {
             p.getInventory().setContents(generateSpawnInventory(4 * 9));
 
             int minPlayers = Game.get().getMinPlayers() - Bukkit.getOnlinePlayers().size();
-            BarManager.broadcastSound(Sound.BLOCK_NOTE_BASS);
-            BarManager.broadcast(BarColor.GREEN, ChatColor.RED +
-                    String.valueOf(minPlayers) + ChatColor.DARK_GREEN +
-                    " more players needed to start the game!");
+//            BarManager.broadcastSound(Sound.BLOCK_NOTE_BASS);
+//            BarManager.broadcast(BarColor.GREEN, ChatColor.RED +
+//                    String.valueOf(minPlayers) + ChatColor.DARK_GREEN +
+//                    " more players needed to start the game!");
         }
 
         if (Game.get().isState(State.INGAME)) {
@@ -100,8 +97,8 @@ public class SessionListener implements Listener {
         if (Game.get().isState(State.LOBBY)) {
             LobbyScoreboard.get().removeScoreboard(event.getPlayer());
 
-            BarManager.broadcast(BarColor.RED, ChatColor.DARK_RED + ChatColor.BOLD.toString() + "[-] " + ChatColor.RESET + playerName);
-            BarManager.broadcastSound(Sound.BLOCK_NOTE_BASS);
+//            BarManager.broadcast(BarColor.RED, ChatColor.DARK_RED + ChatColor.BOLD.toString() + "[-] " + ChatColor.RESET + playerName);
+//            BarManager.broadcastSound(Sound.BLOCK_NOTE_BASS);
 
             int minPlayers = Game.get().getMinPlayers() - Bukkit.getOnlinePlayers().size();
 

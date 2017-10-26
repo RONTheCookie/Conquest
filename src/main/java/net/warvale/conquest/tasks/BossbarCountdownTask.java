@@ -12,14 +12,9 @@ import net.warvale.conquest.maps.VoteMenu;
 import net.warvale.conquest.message.MessageManager;
 import net.warvale.conquest.message.PrefixType;
 import net.warvale.conquest.utils.chat.ChatUtils;
-import net.warvale.conquest.utils.dates.DateUtils;
-import net.warvale.staffcore.bossbar.BarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -41,7 +36,7 @@ public class BossbarCountdownTask extends BukkitRunnable {
     public void run(){
         countdown = countdown - 1;
         Game.get().setState(State.COUNTDOWN);
-        BarManager.getAnnounceBar().setVisible(true);
+//        BarManager.getAnnounceBar().setVisible(true);
         if (countdown == 15){
             TeamBalancing.balanceTeams();
             map = VoteMenu.calculateMap();
@@ -88,7 +83,7 @@ public class BossbarCountdownTask extends BukkitRunnable {
         }
         if (countdown <= 10 && countdown >= 1){
             MessageManager.broadcast(PrefixType.MAIN, ChatColor.DARK_RED + "Conquest " + ChatColor.GRAY + "starts in " + ChatColor.RED + countdown + ChatColor.GRAY + (countdown == 1 ? " second." : " seconds."));
-            BarManager.broadcastSound(Sound.BLOCK_NOTE_PLING);
+//            BarManager.broadcastSound(Sound.BLOCK_NOTE_PLING);
         }
         if (countdown <= 0){
 
@@ -97,9 +92,9 @@ public class BossbarCountdownTask extends BukkitRunnable {
             this.cancel();
             return;
         }
-        BarManager.getAnnounceBar().setTitle(ChatColor.DARK_RED + "Conquest " + ChatColor.GRAY + "starts in " + DateUtils.secondsToString(countdown));
-        BarManager.getAnnounceBar().setProgress((float)countdown/(float)(60 * 5));
-        BarManager.getAnnounceBar().setColor(BarColor.BLUE);
+//        BarManager.getAnnounceBar().setTitle(ChatColor.DARK_RED + "Conquest " + ChatColor.GRAY + "starts in " + DateUtils.secondsToString(countdown));
+//        BarManager.getAnnounceBar().setProgress((float)countdown/(float)(60 * 5));
+//        BarManager.getAnnounceBar().setColor(BarColor.BLUE);
     }
 
     public static int getCountdown() {

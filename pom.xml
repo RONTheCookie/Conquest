@@ -150,12 +150,7 @@
             <version>0.1.53</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.Warvale</groupId>
-            <artifactId>StaffCore</artifactId>
-            <version>-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>de.robingrether.idisguise</groupId>

@@ -2,11 +2,10 @@ package net.warvale.conquest.maps;
 
 import net.warvale.conquest.utils.mc.config.LocationUtil;
 import net.warvale.conquest.utils.world.LocationObject;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConquestMap extends GameMap {
 

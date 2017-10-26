@@ -1,21 +1,17 @@
 package net.warvale.conquest.tasks;
 
-import de.robingrether.idisguise.disguise.DisguiseType;
-import de.robingrether.idisguise.disguise.PlayerDisguise;
 import net.warvale.conquest.ConquestCore;
 import net.warvale.conquest.game.Game;
-import net.warvale.conquest.game.State;
 import net.warvale.conquest.game.GameRunnable;
+import net.warvale.conquest.game.State;
 import net.warvale.conquest.game.scoreboards.GameScoreboard;
 import net.warvale.conquest.game.scoreboards.LobbyScoreboard;
 import net.warvale.conquest.game.teams.TeamManager;
 import net.warvale.conquest.hooks.DisguiseHook;
 import net.warvale.conquest.maps.ConquestMap;
-import net.warvale.conquest.maps.GameMap;
 import net.warvale.conquest.message.MessageManager;
 import net.warvale.conquest.message.PrefixType;
 import net.warvale.conquest.spec.SpecManager;
-import net.warvale.staffcore.bossbar.BarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -23,9 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import net.warvale.staffcore.staffmode.StaffManager;
 
-import java.util.Random;
 import java.util.logging.Level;
 
 public class StartGameTask extends BukkitRunnable {
@@ -37,7 +31,7 @@ public class StartGameTask extends BukkitRunnable {
 
         try {
             MessageManager.broadcast(PrefixType.MAIN, ChatColor.GRAY + "The game has begun on " + ChatColor.RED + BossbarCountdownTask.map.getName() + ChatColor.GRAY + "!");
-            BarManager.getAnnounceBar().setVisible(false);
+//            BarManager.getAnnounceBar().setVisible(false);
 
             TeamManager.get().getPlayers().addAll(TeamManager.get().getRedTeam());
             TeamManager.get().getPlayers().addAll(TeamManager.get().getBlueTeam());
@@ -65,7 +59,7 @@ public class StartGameTask extends BukkitRunnable {
 
             //teleport specs to center of chosen map
             for (Player online : Bukkit.getServer().getOnlinePlayers()) {
-                if (SpecManager.get().isInSpecMode(online) || StaffManager.get().isInStaffMode(online)) {
+                if (SpecManager.get().isInSpecMode(online)) {
                     online.teleport(map.getCenter().toLocation(map.getWorld()));
                 }
             }

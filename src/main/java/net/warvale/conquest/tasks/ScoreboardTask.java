@@ -6,11 +6,8 @@ import net.warvale.conquest.game.State;
 import net.warvale.conquest.game.scoreboards.GameScoreboard;
 import net.warvale.conquest.game.scoreboards.LobbyScoreboard;
 import net.warvale.conquest.utils.dates.DateUtils;
-import net.warvale.staffcore.StaffCore;
-import net.warvale.staffcore.bossbar.BarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 

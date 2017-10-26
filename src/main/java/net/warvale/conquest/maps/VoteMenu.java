@@ -1,14 +1,11 @@
 package net.warvale.conquest.maps;
 
-import com.google.common.base.Joiner;
+import net.md_5.bungee.api.ChatColor;
 import net.warvale.conquest.ConquestCore;
 import net.warvale.conquest.utils.mc.chat.MessageUtil;
 import net.warvale.conquest.utils.mc.items.EnchantGlow;
 import net.warvale.conquest.utils.mc.items.ItemStackBuilder;
 import net.warvale.conquest.utils.mc.menu.Menu;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
