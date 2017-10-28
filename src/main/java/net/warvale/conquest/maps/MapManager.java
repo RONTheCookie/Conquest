@@ -23,7 +23,7 @@ public class MapManager {
         INSTANCE = this;
     }
     public GameMap getMapFromJson(String name) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get("maps/"+name+"/maps.json"));
+        List<String> lines = Files.readAllLines(Paths.get("maps/"+name+"/map.json"));
 
         String raw = StringUtils.join(lines, '\n');
         GameMap gameMap = new Gson().fromJson(raw,GameMap.class);
