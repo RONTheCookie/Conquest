@@ -3,3 +3,6 @@ name: Conquest
 version: 1.0.0
 author: Warvale
 description: Warvale's conquest
+commands:
+    forcestart:
+        description: Starts the game without the countdown.
