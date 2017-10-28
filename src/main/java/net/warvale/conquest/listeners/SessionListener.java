@@ -21,7 +21,6 @@ public class SessionListener implements Listener {
             + ChatColor.AQUA + " more players to start the game!");
         }
 
-
     }
 
     @EventHandler
