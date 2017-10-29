@@ -1,6 +1,8 @@
 package net.warvale.conquest;
 
+import net.warvale.conquest.commands.ForceEndCommand;
 import net.warvale.conquest.commands.ForceStartCommand;
+import net.warvale.conquest.commands.GameStateCommand;
 import net.warvale.conquest.game.Game;
 import net.warvale.conquest.game.GameState;
 import net.warvale.conquest.listeners.SessionListener;
@@ -36,7 +38,8 @@ public class Conquest extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new SessionListener(), this);
         new CountdownTask().runTaskTimer(this,0L,20L);
         getCommand("forcestart").setExecutor(new ForceStartCommand());
-
+        getCommand("forceend").setExecutor(new ForceEndCommand());
+        getCommand("gamestate").setExecutor(new GameStateCommand());
 
 
     }

@@ -6,3 +6,7 @@ description: Warvale's conquest
 commands:
     forcestart:
         description: Starts the game without the countdown.
+    forceend:
+        description: Ends the game right now.
+    gamestate:
+        description: Display's the current game state. Mainly used for debugging.
