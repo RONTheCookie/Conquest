@@ -2,6 +2,7 @@ package net.warvale.conquest.listeners;
 
 import net.warvale.conquest.Conquest;
 import net.warvale.conquest.game.Game;
+import net.warvale.conquest.maps.MapManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -20,7 +21,12 @@ public class SessionListener implements Listener {
                     String.valueOf(Conquest.get().getConfig().getInt("min_players")-Bukkit.getOnlinePlayers().size())
             + ChatColor.AQUA + " more players to start the game!");
         }
-
+        if (MapManager.get().getMapWorld() != null) {
+            event.getPlayer().teleport(MapManager.get().getMapWorld().getSpawnLocation());
+        }
+        if (MapManager.get().getCurrentMap() != null) {
+            event.getPlayer().sendMessage(ChatColor.GOLD+"You are now playing "+ ChatColor.RED+MapManager.get().getCurrentMap().getName()+ChatColor.GOLD+" by "+ChatColor.RED + MapManager.get().getCurrentMap().getAuthor()+ChatColor.GOLD+".");
+        }
     }
 
     @EventHandler

@@ -1,7 +1,10 @@
 package net.warvale.conquest.game;
 
+import net.warvale.conquest.maps.MapManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+
+import java.io.IOException;
 
 public class Game {
     private static Game INSTANCE;
@@ -12,6 +15,15 @@ public class Game {
     private GameState state;
     private boolean countdownEnabled;
     private int countdown;
+    private CoreSet coreSet;
+
+    public CoreSet getCoreSet() {
+        return coreSet;
+    }
+
+    public void setCoreSet(CoreSet coreSet) {
+        this.coreSet = coreSet;
+    }
 
     public GameState getState() {
         return state;
@@ -46,11 +58,23 @@ public class Game {
         countdown = 11;
     }
 
-    public void end() {
 
+    public void end() {
+        if ((MapManager.get().getCurrentRotationPosition() + 1) >= MapManager.get().getRotation().size()) {
+            MapManager.get().setCurrentRotationPosition(0);
+        } else MapManager.get().setCurrentRotationPosition(MapManager.get().getCurrentRotationPosition() + 1);
+        try {
+            MapManager.get().loadMap(MapManager.get().getRotation().get(MapManager.get().getCurrentRotationPosition()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Core redCore = new Core(Team.RED);
+        Core blueCore = new Core(Team.BLUE);
+        this.coreSet = new CoreSet(redCore, blueCore);
 
         // do stuff
 
         setState(GameState.WAITING);
+        this.resetCountdown();
     }
 }

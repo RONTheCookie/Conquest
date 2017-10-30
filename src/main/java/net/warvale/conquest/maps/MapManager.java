@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
@@ -14,11 +15,38 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MapManager {
     public static MapManager INSTANCE;
     public static MapManager get() {return INSTANCE;}
+    private GameMap currentMap;
+    private World mapWorld;
+    private ArrayList<GameMap> rotation;
+    private int currentRotationPosition;
+
+    public int getCurrentRotationPosition() {
+        return currentRotationPosition;
+    }
+
+    public void setCurrentRotationPosition(int currentRotationPosition) {
+        this.currentRotationPosition = currentRotationPosition;
+    }
+
+    public ArrayList<GameMap> getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(ArrayList<GameMap> rotation) {
+        this.rotation = rotation;
+    }
+
+    public GameMap getCurrentMap() {
+        return currentMap;
+    }
+
+
+
+
     public MapManager() {
         INSTANCE = this;
     }
@@ -37,20 +65,15 @@ public class MapManager {
         }
         return list;
     }
-    public GameMap pickRandomMap() throws IOException {
-        Random random = new Random();
 
-        String mapname = getMapNames().get(random.nextInt(getMapNames().size()));
-        return getMapFromJson(mapname);
+    public World getMapWorld() {
+        return mapWorld;
     }
+
     public void loadMap(GameMap gameMap) throws IOException {
-        // Get rid of all other worlds
-        for (World world : Bukkit.getServer().getWorlds()) {
-            if (world.getName().startsWith("conquest_")) {
-                Bukkit.getServer().unloadWorld(world, false);
-                new File(world.getName()).delete();
-            }
-        }
+        currentMap = gameMap;
+
+
 
         //Start getting the new one in.
         File src = new File("maps/"+gameMap.getName()+"/world");
@@ -58,8 +81,24 @@ public class MapManager {
         if (!desti.exists()) desti.mkdir();
         FileUtils.copyDirectory(src,desti);
         World world = Bukkit.getServer().createWorld(new WorldCreator("conquest_"+gameMap.getName()));
+        mapWorld = world;
+        world.setGameRuleValue("doMobSpawning","false");
+        Bukkit.getServer().broadcastMessage(ChatColor.GOLD+"You are now playing "+ ChatColor.RED+gameMap.getName()+ChatColor.GOLD+" by "+ChatColor.RED + gameMap.getAuthor()+ChatColor.GOLD+".");
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(world.getSpawnLocation());
         }
+
+
+        // Get rid of all other worlds
+        for (World wworld : Bukkit.getServer().getWorlds()) {
+
+            if (wworld.getName().startsWith("conquest_") && getMapWorld().getName().equalsIgnoreCase(wworld.getName()) ) {
+                Bukkit.getServer().unloadWorld(wworld, false);
+            }
+        }
+
+
+
+
     }
 }

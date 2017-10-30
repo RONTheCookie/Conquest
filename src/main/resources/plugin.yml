@@ -10,3 +10,5 @@ commands:
         description: Ends the game right now.
     gamestate:
         description: Display's the current game state. Mainly used for debugging.
+    maps:
+        description: Display's all maps.
